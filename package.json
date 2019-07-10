@@ -1,9 +1,26 @@
 {
-  "name": "svelte-app",
-  "version": "1.0.0",
+  "name": "city-editor",
+  "version": "0.0.1",
+  "main": "index.js",
+  "repository": "git@github.com:posttext-project/city-editor.git",
+  "author": "clitetailor <ducnhatphung@gmail.com>",
+  "license": "MIT",
+  "scripts": {
+    "build": "gulp build",
+    "dev": "gulp dev",
+    "prettier:all": "prettier --plugin svelte --write src/**/*.js --write src/**/*.svelte --write src/**/*.css --write src/**/*.html --write gulpfile.esm.js --write webpack.config.js"
+  },
   "devDependencies": {
+    "@babel/core": "^7.5.0",
+    "@babel/preset-env": "^7.5.3",
+    "@babel/register": "^7.4.4",
+    "babel-loader": "^8.0.6",
+    "copy-webpack-plugin": "^5.0.3",
     "cross-env": "^5.2.0",
     "css-loader": "^2.1.1",
+    "esm": "^3.2.25",
+    "fs-extra": "^8.1.0",
+    "gulp": "^4.0.2",
     "mini-css-extract-plugin": "^0.6.0",
     "prettier": "^1.18.2",
     "prettier-plugin-svelte": "^0.6.0",
@@ -15,9 +32,9 @@
     "webpack-cli": "^3.3.0",
     "webpack-dev-server": "^3.3.1"
   },
-  "scripts": {
-    "build": "cross-env NODE_ENV=production webpack",
-    "dev": "webpack-dev-server --content-base public",
-    "prettier:all": "prettier --plugin svelte --write src/**/*.js --write src/**/*.svelte --write src/**/*.css --write src/**/*.html"
+  "dependencies": {
+    "core-js": "^3.1.4",
+    "mathjax": "^2.7.5",
+    "regenerator-runtime": "^0.13.2"
   }
 }

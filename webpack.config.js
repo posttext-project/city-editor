@@ -1,4 +1,5 @@
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
+const path = require('path')
 
 const mode = process.env.NODE_ENV || 'development'
 const prod = mode === 'production'
@@ -11,7 +12,7 @@ module.exports = {
     extensions: ['.mjs', '.js', '.svelte']
   },
   output: {
-    path: __dirname + '/public',
+    path: path.resolve(__dirname, 'public'),
     filename: '[name].js',
     chunkFilename: '[name].[id].js'
   },
@@ -43,5 +44,9 @@ module.exports = {
       filename: '[name].css'
     })
   ],
-  devtool: prod ? false : 'source-map'
+  devtool: prod ? false : 'source-map',
+  devServer: {
+    port: 8080,
+    contentBase: path.resolve(__dirname, 'public')
+  }
 }
