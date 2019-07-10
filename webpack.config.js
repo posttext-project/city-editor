@@ -1,15 +1,20 @@
-const MiniCssExtractPlugin = require('mini-css-extract-plugin')
-const path = require('path')
+import MiniCssExtractPlugin from 'mini-css-extract-plugin'
+import path from 'path'
 
-const mode = process.env.NODE_ENV || 'development'
-const prod = mode === 'production'
+export const mode = process.env.NODE_ENV || 'development'
+export const prod = mode === 'production'
 
-module.exports = {
+export default {
   entry: {
-    bundle: ['./src/main.js']
+    polyfill: [
+      './src/polyfill.js'
+    ],
+    bundle: [
+      './src/main.js'
+    ]
   },
   resolve: {
-    extensions: ['.mjs', '.js', '.svelte']
+    extensions: ['.css', '.mjs', '.js', '.svelte']
   },
   output: {
     path: path.resolve(__dirname, 'public'),
@@ -18,6 +23,13 @@ module.exports = {
   },
   module: {
     rules: [
+      {
+        test: /\.js$/,
+        exclude: /node_modules/,
+        use: {
+          loader: 'babel-loader'
+        }
+      },
       {
         test: /\.svelte$/,
         exclude: /node_modules/,

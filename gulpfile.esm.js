@@ -21,6 +21,7 @@ export async function _copyMathJax() {
         'extensions/**/*',
         'fonts/**/*',
         'localization/**/*',
+        'jax/**/*',
         'latest.js',
         'MathJax.js'
       ].map(pattern => path.resolve(mathJax, pattern)),
@@ -34,7 +35,7 @@ export async function _copyPublicAssets() {
 
   return gulp
     .src(
-      ['index.html', 'global.css', 'favicon.png'].map(pattern =>
+      ['index.html', 'favicon.png', 'global.css'].map(pattern =>
         path.resolve(sourceDir, pattern)
       ),
       { base: sourceDir }
@@ -66,7 +67,7 @@ export const dev = gulp.series(copyAssets, _dev)
 export function _build() {
   const compiler = webpack(webpackConfig)
 
-  return new Promise((resolve, reject) => {
+  return new Promise(resolve => {
     compiler.run((err, stats) => {
       console.log(
         stats.toString({
